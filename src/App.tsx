@@ -1,8 +1,13 @@
 import React, { createElement } from "react";
 import { createRoot } from "react-dom/client";
+import "./App.scss";
 
 const App = () => {
-  return <div>Hello App</div>;
+  return (
+    <div>
+      <div className="app-text">Hello App</div>
+    </div>
+  );
 };
 
 const container: HTMLElement | null = document.getElementById("root");
