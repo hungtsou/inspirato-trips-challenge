@@ -5,6 +5,8 @@ const App = () => {
   return <div>Hello App</div>;
 };
 
-const container = document.getElementById("root");
+const container: HTMLElement | null = document.getElementById("root");
+if (!container) throw new Error("no container to render to");
+
 const root = createRoot(container);
 root.render(createElement(App));
