@@ -1,11 +1,11 @@
-import React, { createElement } from "react";
+import { createElement } from "react";
 import { createRoot } from "react-dom/client";
-import "./App.scss";
+import Pages from "./pages";
 
 const App = () => {
   return (
     <div>
-      <div className="app-text">Hello App</div>
+      <Pages />
     </div>
   );
 };
