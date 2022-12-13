@@ -1,6 +1,7 @@
 import React, { createElement, FunctionComponent, useEffect } from "react";
 import { createRoot } from "react-dom/client";
-import "./styles.scss";
+import styles from "./styles.module.scss";
+import { LazyLoadImage } from "react-lazy-load-image-component";
 
 interface Props {
   heroImage: string;
@@ -18,15 +19,23 @@ const TripItem: FunctionComponent<Props> = ({
   parentCategoryName,
 }) => {
   return (
-    <div>
-      <div>
-        <img src={heroImage} alt={`${unitStyleName} trip`} />
-      </div>
-      <div>
-        <p className="name">{unitName}</p>
-        <p className="style_name">{unitStyleName}</p>
-        <p className="check_in_date">{checkInDate}</p>
-        <p className="category_name">{parentCategoryName}</p>
+    <div className={styles.wrapper}>
+      <div className={styles.row}>
+        <div className={styles.col}>
+          <LazyLoadImage
+            className={styles.img}
+            src={heroImage}
+            alt={`${unitStyleName} trip`}
+          />
+        </div>
+        <div className={styles.col}>
+          <p className="name">Name: {unitName}</p>
+          <p className="style_name">Style: {unitStyleName}</p>
+          <p className="category_name">Category: {parentCategoryName}</p>
+          <p className="check_in_date">
+            Check in: {new Date(checkInDate).toLocaleString()}
+          </p>
+        </div>
       </div>
     </div>
   );

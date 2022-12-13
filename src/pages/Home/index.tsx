@@ -1,13 +1,15 @@
+/* eslint-disable @typescript-eslint/no-unsafe-argument */
 import { useEffect, useState } from "react";
 import TripList from "../../components/TripList";
-import "./styles.scss";
+import styles from "./styles.module.scss";
 
 interface TripsData {
-  tripSet: any;
+  tripSet: any[];
 }
 
 const Home = () => {
   const [tripsData, setTripsData] = useState<TripsData>();
+  const [sortByCheckIn, setSortByCheckIn] = useState<boolean>(false);
 
   useEffect(() => {
     void getTrips();
@@ -19,10 +21,24 @@ const Home = () => {
     if (response) setTripsData(response);
   };
 
+  const sortByCheckInDate = () => {
+    if (sortByCheckIn) {
+      return tripsData?.tripSet?.sort(
+        (a: { checkInDate: number }, b: { checkInDate: number }) =>
+          new Date(Number(a.checkInDate)).valueOf() -
+          new Date(b.checkInDate).valueOf()
+      );
+    }
+
+    return tripsData?.tripSet;
+  };
+
   return (
     <div>
-      <h1>Welcome</h1>
-      <TripList tripSet={tripsData?.tripSet} />
+      <div className={styles.container}>
+        <h1>Welcome</h1>
+        <TripList tripSet={sortByCheckInDate()} />
+      </div>
     </div>
   );
 };

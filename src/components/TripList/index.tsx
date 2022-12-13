@@ -1,6 +1,6 @@
 import React, { createElement, useEffect } from "react";
 import TripItem from "../TripItem";
-import "./styles.scss";
+import styles from "./styles.module.scss";
 
 interface Trip {
   unitID: string;
@@ -12,7 +12,7 @@ interface Trip {
 }
 
 interface Props {
-  tripSet: Trip[];
+  tripSet?: Trip[];
 }
 
 const TripsList = ({ tripSet }: Props) => {
@@ -20,17 +20,19 @@ const TripsList = ({ tripSet }: Props) => {
   return (
     <div>
       <h2>Trips</h2>
-      {tripSet?.map((trip) => (
-        <div key={trip.unitID}>
-          <TripItem
-            heroImage={trip.heroImage}
-            unitName={trip.unitName}
-            unitStyleName={trip.unitStyleName}
-            checkInDate={trip.checkInDate}
-            parentCategoryName={trip.parentCategoryName}
-          />
-        </div>
-      ))}
+      <div className={styles.grid}>
+        {tripSet?.map((trip, i) => (
+          <div key={i}>
+            <TripItem
+              heroImage={`https://cms.inspirato.com/${trip.heroImage}?width=400`}
+              unitName={trip.unitName}
+              unitStyleName={trip.unitStyleName}
+              checkInDate={trip.checkInDate}
+              parentCategoryName={trip.parentCategoryName}
+            />
+          </div>
+        ))}
+      </div>
     </div>
   );
 };
