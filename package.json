@@ -1,0 +1,30 @@
+{
+  "name": "inspirato-trips-challenge",
+  "version": "1.0.0",
+  "description": "UI Code Challenge using React + Typescript with custom modern CSS",
+  "main": "index.js",
+  "scripts": {
+    "dev": "vite",
+    "build": "vite build",
+    "preview": "vite preview",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/hungtsou/inspirato-trips-challenge.git"
+  },
+  "author": "Hung Tsou",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/hungtsou/inspirato-trips-challenge/issues"
+  },
+  "homepage": "https://github.com/hungtsou/inspirato-trips-challenge#readme",
+  "devDependencies": {
+    "@vitejs/plugin-react": "^2.1.0",
+    "vite": "^3.1.4"
+  },
+  "dependencies": {
+    "react": "^18.2.0",
+    "react-dom": "^18.2.0"
+  }
+}
