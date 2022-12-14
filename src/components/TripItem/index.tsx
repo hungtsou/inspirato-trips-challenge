@@ -2,13 +2,15 @@ import React, { createElement, FunctionComponent, useEffect } from "react";
 import { createRoot } from "react-dom/client";
 import styles from "./styles.module.scss";
 import { LazyLoadImage } from "react-lazy-load-image-component";
+import { Trip } from "../../lib/types/trips";
+import "react-lazy-load-image-component/src/effects/blur.css";
 
 interface Props {
-  heroImage: string;
-  unitName: string;
-  unitStyleName: string;
-  checkInDate: string;
-  parentCategoryName: string;
+  heroImage: Trip["heroImage"];
+  unitName: Trip["unitName"];
+  unitStyleName: Trip["unitStyleName"];
+  checkInDate: Trip["checkInDate"];
+  parentCategoryName: Trip["parentCategoryName"];
 }
 
 const TripItem: FunctionComponent<Props> = ({
@@ -24,6 +26,7 @@ const TripItem: FunctionComponent<Props> = ({
         <div className={styles.col}>
           <LazyLoadImage
             className={styles.img}
+            effect="blur"
             src={heroImage}
             alt={`${unitStyleName} trip`}
           />

@@ -14,7 +14,9 @@
     "react/react-in-jsx-scope": 0,
     "@typescript-eslint/no-empty-function": 0,
     "@typescript-eslint/no-unsafe-assignment": 1,
-    "@typescript-eslint/no-unsafe-member-access": 1
+    "@typescript-eslint/no-unsafe-member-access": 1,
+    "no-use-before-define": 0
+
   },
   "plugins": ["react", "import", "jsx-a11y", "@typescript-eslint"],
   "parser": "@typescript-eslint/parser",

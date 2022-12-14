@@ -1,22 +1,13 @@
 import React, { createElement, useEffect } from "react";
+import { Trip } from "../../lib/types/trips";
 import TripItem from "../TripItem";
 import styles from "./styles.module.scss";
-
-interface Trip {
-  unitID: string;
-  heroImage: string;
-  unitName: string;
-  unitStyleName: string;
-  checkInDate: string;
-  parentCategoryName: string;
-}
 
 interface Props {
   tripSet?: Trip[];
 }
 
 const TripsList = ({ tripSet }: Props) => {
-  console.log("my trips", tripSet);
   return (
     <div>
       <h2>Trips</h2>
