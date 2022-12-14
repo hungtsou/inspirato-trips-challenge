@@ -1,4 +1,3 @@
-import React, { createElement, useEffect } from "react";
 import { TripsProvider } from "../lib/context/TripsContext";
 import Home from "./Home";
 

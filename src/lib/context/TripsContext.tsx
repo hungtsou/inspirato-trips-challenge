@@ -21,7 +21,7 @@ interface State {
 
 interface TripAction {
   type: string;
-  payload: Trips | string | any;
+  payload: Trips | Trip[] | string;
 }
 
 // Actions
@@ -51,12 +51,11 @@ export function clearAll() {
 export function tripsReducer(state: State, action: TripAction) {
   switch (action.type) {
     case ADD_TRIPS:
-      // eslint-disable-next-line @typescript-eslint/no-unsafe-assignment
-      return { ...state, trips: action.payload };
+      return { ...state, trips: action.payload as Trips };
     case ADD_FILTER_STYLE:
-      return { ...state, filterStyle: action.payload };
+      return { ...state, filterStyle: action.payload as string };
     case ADD_FILTERED_TRIPS:
-      return { ...state, filteredTrips: action.payload };
+      return { ...state, filteredTrips: action.payload as Trip[] };
     default:
       return state;
   }

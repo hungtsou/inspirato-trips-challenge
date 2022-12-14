@@ -1,4 +1,3 @@
-import React, { createElement, useEffect } from "react";
 import { Trip } from "../../lib/types/trips";
 import TripItem from "../TripItem";
 import styles from "./styles.module.scss";

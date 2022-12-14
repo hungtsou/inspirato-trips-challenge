@@ -1,5 +1,4 @@
 import { ChangeEvent, FunctionComponent } from "react";
-import styles from "./styles.module.scss";
 
 interface Props {
   label: string;

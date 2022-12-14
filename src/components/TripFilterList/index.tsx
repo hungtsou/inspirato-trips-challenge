@@ -1,8 +1,6 @@
-import React, { createElement, useEffect } from "react";
-import { Styles as StylesEnum, Trip, Trips } from "../../lib/types/trips";
+import { Trips } from "../../lib/types/trips";
 import TripFilterItem from "../TripFilterItem";
-import TripItem from "../TripItem";
-import _styles from "./styles.module.scss";
+import styles from "./styles.module.scss";
 
 interface Props {
   filters: Trips["styles"];
@@ -11,9 +9,9 @@ interface Props {
 const TripFilterList = ({ filters }: Props) => {
   return (
     <div>
-      <div className={_styles.row}>
+      <div className={styles.row}>
         {Object.entries(filters)?.map(([key, filterName]) => (
-          <div key={key} className={_styles.col}>
+          <div key={key} className={styles.col}>
             <TripFilterItem filterName={filterName} />
           </div>
         ))}

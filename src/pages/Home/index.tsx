@@ -1,5 +1,3 @@
-/* eslint-disable @typescript-eslint/no-unsafe-assignment */
-/* eslint-disable @typescript-eslint/no-unsafe-argument */
 import { ChangeEvent, useCallback, useEffect, useState } from "react";
 import CheckBox from "../../components/CheckBox";
 import TripFilterList from "../../components/TripFilterList";

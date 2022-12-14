@@ -1,7 +1,5 @@
-import React, { createElement, useEffect } from "react";
 import { LazyLoadImage } from "react-lazy-load-image-component";
-import { Trip, Trips } from "../../lib/types/trips";
-import TripItem from "../TripItem";
+import { Trip } from "../../lib/types/trips";
 import styles from "./styles.module.scss";
 import "react-lazy-load-image-component/src/effects/blur.css";
 import {
