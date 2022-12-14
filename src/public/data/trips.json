@@ -2521,5 +2521,9 @@
     "3": "Lifestyle",
     "5": "Metropolitan",
     "2": "Mountain"
+  },
+  "categories": {
+    "0": "Homes",
+    "1": "Rooms/Suites"
   }
 }

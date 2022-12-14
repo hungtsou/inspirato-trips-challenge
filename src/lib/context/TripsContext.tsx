@@ -6,6 +6,7 @@ const initialState: State = {
   trips: null,
   filterStyle: null,
   filteredTrips: null,
+  filterCategory: null,
 };
 
 export const TripsContext = createContext<{
@@ -16,6 +17,7 @@ export const TripsContext = createContext<{
 interface State {
   trips: Trips | null;
   filterStyle: string | null;
+  filterCategory: string | null;
   filteredTrips: Trip[] | null;
 }
 
@@ -24,9 +26,15 @@ interface TripAction {
   payload: Trips | Trip[] | string;
 }
 
+export enum FILTER_KEY_NAME {
+  UnitStyleName = "unitStyleName",
+  ParentCategoryName = "parentCategoryName",
+}
+
 // Actions
 export const ADD_TRIPS = "ADD_TRIPS";
 export const ADD_FILTER_STYLE = "ADD_FILTER_STYLE";
+export const ADD_FILTER_CATEGORY = "ADD_FILTER_CATEGORY";
 export const ADD_FILTERED_TRIPS = "ADD_FILTERED_TRIPS";
 export const CLEAR_ALL = "CLEAR_ALL";
 
@@ -35,8 +43,12 @@ export function addTrips(trips: Trips) {
   return { type: ADD_TRIPS, payload: trips };
 }
 
-export function addFilters(filter: string) {
+export function addFilterStyle(filter: string) {
   return { type: ADD_FILTER_STYLE, payload: filter };
+}
+
+export function addFilterCategory(filter: string) {
+  return { type: ADD_FILTER_CATEGORY, payload: filter };
 }
 
 export function addFilteredTrips(trips: Trip[]) {
@@ -54,6 +66,8 @@ export function tripsReducer(state: State, action: TripAction) {
       return { ...state, trips: action.payload as Trips };
     case ADD_FILTER_STYLE:
       return { ...state, filterStyle: action.payload as string };
+    case ADD_FILTER_CATEGORY:
+      return { ...state, filterCategory: action.payload as string };
     case ADD_FILTERED_TRIPS:
       return { ...state, filteredTrips: action.payload as Trip[] };
     default:

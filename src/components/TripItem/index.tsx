@@ -19,12 +19,12 @@ const TripItem: FunctionComponent<Props> = ({
   parentCategoryName,
 }) => {
   return (
-    <>
+    <div className={styles.trip_item}>
       <div className={styles.col}>
         <LazyLoadImage
           className={styles.img}
           effect="blur"
-          src={heroImage}
+          src={`${heroImage}?width=400`}
           alt={`${unitStyleName} trip`}
         />
       </div>
@@ -36,7 +36,7 @@ const TripItem: FunctionComponent<Props> = ({
           Check in: {new Date(checkInDate).toLocaleString()}
         </p>
       </div>
-    </>
+    </div>
   );
 };
 

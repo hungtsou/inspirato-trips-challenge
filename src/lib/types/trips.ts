@@ -18,4 +18,5 @@ export enum Styles {
 export type Trips = {
   tripSet: Trip[];
   styles: { [key: string]: string };
+  categories: { [key: string]: string };
 };

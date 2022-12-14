@@ -13,7 +13,7 @@ const TripsList = ({ tripSet }: Props) => {
         {tripSet?.map((trip, i) => (
           <div key={i}>
             <TripItem
-              heroImage={`https://cms.inspirato.com/${trip.heroImage}?width=400`}
+              heroImage={`https://cms.inspirato.com${trip.heroImage}`}
               unitName={trip.unitName}
               unitStyleName={trip.unitStyleName}
               checkInDate={trip.checkInDate}

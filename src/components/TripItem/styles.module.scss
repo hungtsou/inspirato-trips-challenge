@@ -1,3 +1,6 @@
+.trip_item {
+  max-width: 400px;
+}
 .col {
   > span {
     width: 100%;
@@ -6,10 +9,4 @@
 
 .img {
   border-radius: 10px;
-}
-
-.placeholder {
-  width: 400px;
-  height: 400px;
-  background-color: red;
 }

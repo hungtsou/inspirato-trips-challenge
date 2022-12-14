@@ -1,46 +1,24 @@
 import { LazyLoadImage } from "react-lazy-load-image-component";
-import { Trip } from "../../lib/types/trips";
 import styles from "./styles.module.scss";
 import "react-lazy-load-image-component/src/effects/blur.css";
-import {
-  addFilteredTrips,
-  addFilters,
-  useTripsContext,
-} from "../../lib/context/TripsContext";
 
 interface Props {
   filterName: string;
+  activeFilter: string | null;
+  handleOnClick: (filterValue: string) => void;
 }
 
-const TripFilterItem = ({ filterName }: Props) => {
-  const {
-    tripsState: { trips, filterStyle },
-    dispatch,
-  } = useTripsContext();
-
+const TripFilterItem = ({ filterName, activeFilter, handleOnClick }: Props) => {
   const styleActive =
-    filterStyle?.toLocaleLowerCase() === filterName.toLocaleLowerCase()
+    activeFilter?.toLocaleLowerCase() === filterName.toLocaleLowerCase()
       ? styles.active
       : "";
 
-  const filterTrips = (filterValue: string) => {
-    return trips?.tripSet.filter((tripSetItem) => {
-      const unitStyleName = tripSetItem.unitStyleName.toLocaleLowerCase();
-      const _filterValue = filterValue.toLocaleLowerCase();
-
-      if (unitStyleName === _filterValue) return tripSetItem;
-      if (_filterValue === "all vacations") return tripSetItem;
-    }) as Trip[];
-  };
-
-  const handleOnClick = () => {
-    const filterTripsData = filterTrips(filterName);
-    dispatch(addFilters(filterName));
-    dispatch(addFilteredTrips(filterTripsData));
-  };
-
   return (
-    <button onClick={handleOnClick} className={`${styles.btn} ${styleActive}`}>
+    <button
+      onClick={() => handleOnClick(filterName)}
+      className={`${styles.btn} ${styleActive}`}
+    >
       <LazyLoadImage
         className={styles.img}
         effect="blur"

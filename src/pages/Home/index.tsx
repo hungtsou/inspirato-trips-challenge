@@ -3,16 +3,19 @@ import CheckBox from "../../components/CheckBox";
 import TripFilterList from "../../components/TripFilterList";
 import TripList from "../../components/TripList";
 import {
+  addFilterCategory,
   addFilteredTrips,
+  addFilterStyle,
   addTrips,
+  FILTER_KEY_NAME,
   useTripsContext,
 } from "../../lib/context/TripsContext";
-import { Trips } from "../../lib/types/trips";
+import { Trip, Trips } from "../../lib/types/trips";
 import styles from "./styles.module.scss";
 
 const Home = () => {
   const {
-    tripsState: { trips, filteredTrips },
+    tripsState: { trips, filteredTrips, filterStyle, filterCategory },
     dispatch,
   } = useTripsContext();
   const [sortByCheckIn, setSortByCheckIn] = useState<boolean>(true);
@@ -60,6 +63,64 @@ const Home = () => {
     sortByCheckInDate(e.target.checked);
   };
 
+  const filterTrips = (filterKeyName: FILTER_KEY_NAME, filterValue: string) => {
+    return trips?.tripSet.filter((tripSetItem) => {
+      const filterStyleRef = tripSetItem[FILTER_KEY_NAME.UnitStyleName];
+      const filterCategoryRef = tripSetItem[FILTER_KEY_NAME.ParentCategoryName];
+      const allStylesValue = "All Vacations";
+
+      if (filterKeyName === FILTER_KEY_NAME.UnitStyleName && filterCategory) {
+        if (
+          filterValue === allStylesValue &&
+          filterCategoryRef === filterCategory
+        )
+          return tripSetItem;
+
+        if (
+          filterStyleRef === filterValue &&
+          filterCategoryRef === filterCategory
+        )
+          return tripSetItem;
+      }
+
+      if (filterKeyName === FILTER_KEY_NAME.ParentCategoryName && filterStyle) {
+        if (filterStyle === allStylesValue && filterCategoryRef === filterValue)
+          return tripSetItem;
+
+        if (filterCategoryRef === filterValue && filterStyleRef === filterStyle)
+          return tripSetItem;
+      }
+
+      if (
+        (filterKeyName === FILTER_KEY_NAME.UnitStyleName && !filterCategory) ||
+        (filterKeyName === FILTER_KEY_NAME.ParentCategoryName && !filterStyle)
+      ) {
+        const filterRef = tripSetItem[filterKeyName];
+
+        if (filterRef === filterValue) return tripSetItem;
+        if (filterValue === allStylesValue) return tripSetItem;
+      }
+    }) as Trip[];
+  };
+
+  const handleStyleFilterClick = (filterValue: string) => {
+    dispatch(addFilterStyle(filterValue));
+    const filterTripsData = filterTrips(
+      FILTER_KEY_NAME.UnitStyleName,
+      filterValue
+    );
+    dispatch(addFilteredTrips(filterTripsData));
+  };
+
+  const handleCategoryFilterClick = (filterValue: string) => {
+    dispatch(addFilterCategory(filterValue));
+    const filterTripsData = filterTrips(
+      FILTER_KEY_NAME.ParentCategoryName,
+      filterValue
+    );
+    dispatch(addFilteredTrips(filterTripsData));
+  };
+
   if (!trips) {
     return (
       <div className={styles.loading}>
@@ -71,7 +132,18 @@ const Home = () => {
   return (
     <div className={styles.container}>
       <section>
-        <TripFilterList filters={trips?.styles} />
+        <TripFilterList
+          activeFilter={filterStyle}
+          filters={trips?.styles}
+          handleOnClick={handleStyleFilterClick}
+        />
+      </section>
+      <section className={styles.filter_category_section}>
+        <TripFilterList
+          activeFilter={filterCategory}
+          filters={trips?.categories}
+          handleOnClick={handleCategoryFilterClick}
+        />
       </section>
       <section>
         <CheckBox
