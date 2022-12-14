@@ -1,16 +1,14 @@
 import React, { createElement, FunctionComponent, useEffect } from "react";
-import { createRoot } from "react-dom/client";
 import styles from "./styles.module.scss";
 import { LazyLoadImage } from "react-lazy-load-image-component";
-import { Trip } from "../../lib/types/trips";
 import "react-lazy-load-image-component/src/effects/blur.css";
 
 interface Props {
-  heroImage: Trip["heroImage"];
-  unitName: Trip["unitName"];
-  unitStyleName: Trip["unitStyleName"];
-  checkInDate: Trip["checkInDate"];
-  parentCategoryName: Trip["parentCategoryName"];
+  heroImage: string;
+  unitName: string;
+  unitStyleName: string;
+  checkInDate: string;
+  parentCategoryName: string;
 }
 
 const TripItem: FunctionComponent<Props> = ({

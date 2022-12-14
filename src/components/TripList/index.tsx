@@ -10,7 +10,6 @@ interface Props {
 const TripsList = ({ tripSet }: Props) => {
   return (
     <div>
-      <h2>Trips</h2>
       <div className={styles.grid}>
         {tripSet?.map((trip, i) => (
           <div key={i}>
