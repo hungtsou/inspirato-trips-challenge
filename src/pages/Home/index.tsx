@@ -6,29 +6,24 @@ import {
   addFilterCategory,
   addFilteredTrips,
   addFilterStyle,
-  addTrips,
   FILTER_KEY_NAME,
   useTripsContext,
 } from "../../lib/context/TripsContext";
+import useTrips from "../../lib/hooks/useTrips";
 import { Trip, Trips } from "../../lib/types/trips";
 import styles from "./styles.module.scss";
 
 const Home = () => {
-  const {
-    tripsState: { trips, filteredTrips, filterStyle, filterCategory },
-    dispatch,
-  } = useTripsContext();
+  const { dispatch } = useTripsContext();
+  const { trips, filteredTrips, filterStyle, filterCategory } = useTrips();
   const [sortByCheckIn, setSortByCheckIn] = useState<boolean>(true);
   const [tripSet, setTripSet] = useState<Trips["tripSet"]>();
 
-  useEffect(() => {
-    void getTrips();
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, []);
-
   const sortByCheckInDate = useCallback(
     (isSort: boolean) => {
-      const sortDta = filteredTrips?.sort((a, b) => {
+      const dataSrc = filteredTrips || trips?.tripSet;
+
+      const sortData = dataSrc?.sort((a, b) => {
         if (!isSort) {
           return (
             new Date(b.checkInDate).valueOf() -
@@ -40,23 +35,14 @@ const Home = () => {
           new Date(a.checkInDate).valueOf() - new Date(b.checkInDate).valueOf()
         );
       });
-      setTripSet(sortDta);
+      setTripSet(sortData);
     },
-    [filteredTrips]
+    [filteredTrips, trips?.tripSet]
   );
 
   useEffect(() => {
     sortByCheckInDate(sortByCheckIn);
   }, [sortByCheckIn, sortByCheckInDate]);
-
-  const getTrips = async () => {
-    const data = await fetch("/data/trips.json");
-    const response: Trips = (await data.json()) as Trips;
-    if (response) {
-      dispatch(addTrips(response));
-      if (!filteredTrips) dispatch(addFilteredTrips(response.tripSet));
-    }
-  };
 
   const handleSortByCheckIn = () => {
     sortByCheckInDate(!sortByCheckIn);
