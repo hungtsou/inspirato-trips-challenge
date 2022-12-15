@@ -3,13 +3,16 @@
   "version": "1.0.0",
   "description": "UI Code Challenge using React + Typescript with custom modern CSS",
   "main": "index.js",
+  "home": "http://hungtsou.github.io/inspirato-trips-challenge",
   "scripts": {
     "dev": "vite --host",
     "build": "vite build",
     "preview": "npm run build && vite preview --host",
     "test": "echo \"Error: no test specified\" && exit 1",
     "format": "prettier --write \"src/**/*.{js,jsx}\"",
-    "lint": "eslint \"src/**/*.{js,jsx,ts,tsx}\" --quiet"
+    "lint": "eslint \"src/**/*.{js,jsx,ts,tsx}\" --quiet",
+    "predeploy": "npm run build",
+    "deploy": "gh-pages -d build"
   },
   "repository": {
     "type": "git",
@@ -35,6 +38,7 @@
     "eslint-plugin-jsx-a11y": "^6.6.1",
     "eslint-plugin-react": "^7.31.8",
     "eslint-plugin-react-hooks": "^4.6.0",
+    "gh-pages": "^4.0.0",
     "prettier": "^2.7.1",
     "sass": "^1.56.2",
     "typescript": "^4.8.4",
