@@ -3,7 +3,7 @@
   "version": "1.0.0",
   "description": "UI Code Challenge using React + Typescript with custom modern CSS",
   "main": "index.js",
-  "home": "http://hungtsou.github.io/inspirato-trips-challenge",
+  "homepage": "http://hungtsou.github.io/inspirato-trips-challenge",
   "scripts": {
     "dev": "vite --host",
     "build": "vite build",
@@ -23,7 +23,6 @@
   "bugs": {
     "url": "https://github.com/hungtsou/inspirato-trips-challenge/issues"
   },
-  "homepage": "https://github.com/hungtsou/inspirato-trips-challenge#readme",
   "devDependencies": {
     "@types/react": "^18.0.21",
     "@types/react-dom": "^18.0.6",
