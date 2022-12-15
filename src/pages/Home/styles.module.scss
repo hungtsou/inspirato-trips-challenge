@@ -14,11 +14,16 @@
   }
 }
 
-.trip_list_section, .filter_category_section  {
+.filter_category_section  {
   margin-top: 10px;
+}
+
+.trip_list_section {
+  margin-top: 15px;
 }
 
 .filter_style_section {
   display: flex;
   justify-content: center;
+  overflow-y: auto;
 }

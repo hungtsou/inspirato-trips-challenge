@@ -1,11 +1,4 @@
-import {
-  ChangeEvent,
-  useCallback,
-  useEffect,
-  useState,
-  MouseEvent,
-} from "react";
-import CheckBox from "../../components/CheckBox";
+import { useCallback, useEffect, useState } from "react";
 import SortBtn from "../../components/SortBtn";
 import TripFilterList from "../../components/TripFilterList";
 import TripList from "../../components/TripList";
