@@ -1,9 +1,10 @@
 import { LazyLoadImage } from "react-lazy-load-image-component";
 import styles from "./styles.module.scss";
 import "react-lazy-load-image-component/src/effects/blur.css";
+import { Category, Style } from "../../lib/types/trips";
 
 interface Props {
-  filterName: string;
+  filterName: Style | Category;
   activeFilter: string | null;
   handleOnClick: (filterValue: string) => void;
 }

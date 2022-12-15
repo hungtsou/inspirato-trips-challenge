@@ -3,7 +3,7 @@ import TripFilterItem from "../TripFilterItem";
 import styles from "./styles.module.scss";
 
 interface Props {
-  filters: Trips["styles"];
+  filters: Trips["styles"] | Trips["categories"];
   activeFilter: string | null;
   handleOnClick: (filterValue: string) => void;
 }

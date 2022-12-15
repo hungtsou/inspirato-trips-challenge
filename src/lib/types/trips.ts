@@ -7,7 +7,7 @@ export type Trip = {
   propertyID: string;
 };
 
-export enum Styles {
+export enum Style {
   All = "All Vacations",
   Beach = "Beach",
   Mountain = "Mountain",
@@ -15,8 +15,13 @@ export enum Styles {
   Metropolitan = "Metropolitan",
 }
 
+export enum Category {
+  "Homes" = "Homes",
+  "Rooms/Suites" = "Rooms/Suites",
+}
+
 export type Trips = {
   tripSet: Trip[];
-  styles: { [key: string]: string };
-  categories: { [key: string]: string };
+  styles: { [key: string]: Style };
+  categories: { [key: string]: Category };
 };
