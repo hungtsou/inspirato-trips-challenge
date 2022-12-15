@@ -1,5 +1,12 @@
-import { ChangeEvent, useCallback, useEffect, useState } from "react";
+import {
+  ChangeEvent,
+  useCallback,
+  useEffect,
+  useState,
+  MouseEvent,
+} from "react";
 import CheckBox from "../../components/CheckBox";
+import SortBtn from "../../components/SortBtn";
 import TripFilterList from "../../components/TripFilterList";
 import TripList from "../../components/TripList";
 import {
@@ -58,9 +65,9 @@ const Home = () => {
     }
   };
 
-  const handleSortByCheckIn = (e: ChangeEvent<HTMLInputElement>) => {
-    setSortByCheckIn(e.target.checked);
-    sortByCheckInDate(e.target.checked);
+  const handleSortByCheckIn = () => {
+    sortByCheckInDate(!sortByCheckIn);
+    setSortByCheckIn(!sortByCheckIn);
   };
 
   const filterTrips = (filterKeyName: FILTER_KEY_NAME, filterValue: string) => {
@@ -122,16 +129,14 @@ const Home = () => {
   };
 
   if (!trips) {
-    return (
-      <div className={styles.loading}>
-        <p>...Loading</p>
-      </div>
-    );
+    // add loader
+    return null;
   }
 
   return (
     <div className={styles.container}>
-      <section>
+      <section className={styles.filter_style_section}>
+        <SortBtn handleOnClick={handleSortByCheckIn} label="Check-In" />
         <TripFilterList
           activeFilter={filterStyle}
           filters={trips?.styles}
@@ -143,13 +148,6 @@ const Home = () => {
           activeFilter={filterCategory}
           filters={trips?.categories}
           handleOnClick={handleCategoryFilterClick}
-        />
-      </section>
-      <section>
-        <CheckBox
-          checked={sortByCheckIn}
-          label="Sort by closest check in"
-          handleOnChange={handleSortByCheckIn}
         />
       </section>
       <section className={styles.trip_list_section}>
