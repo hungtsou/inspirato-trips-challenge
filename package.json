@@ -3,7 +3,7 @@
   "version": "1.0.0",
   "description": "UI Code Challenge using React + Typescript with custom modern CSS",
   "main": "index.js",
-  "homepage": "http://hungtsou.github.io/inspirato-trips-challenge/index.html",
+  "homepage": "http://hungtsou.github.io/inspirato-trips-challenge",
   "scripts": {
     "dev": "vite --host",
     "build": "vite build",
