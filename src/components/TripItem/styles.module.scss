@@ -1,5 +1,21 @@
+@keyframes loading {
+  0% {
+    opacity: .7;
+  }
+
+  50% {
+    opacity: .9;
+  }
+
+  100% {
+    opacity: 1;
+  }
+}
+
 .trip_item {
   max-width: 400px;
+  display: flex;
+  flex-direction: column;
 }
 .col {
   > span {
@@ -7,6 +23,16 @@
   }
 }
 
-.img {
+.img, .img_placeholder {
   border-radius: 10px;
+}
+
+.img_placeholder {
+  width: 100%;
+  height: 250px;
+  background-color: #f5f0f0;
+  opacity: .5;
+  animation: 1s ease-out 0s 1 loading;
+  animation-iteration-count: infinite;
+
 }

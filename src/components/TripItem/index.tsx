@@ -1,7 +1,5 @@
-import React, { FunctionComponent } from "react";
+import React, { FunctionComponent, useState } from "react";
 import styles from "./styles.module.scss";
-import { LazyLoadImage } from "react-lazy-load-image-component";
-import "react-lazy-load-image-component/src/effects/blur.css";
 
 interface Props {
   heroImage: string;
@@ -11,6 +9,8 @@ interface Props {
   parentCategoryName: string;
 }
 
+const ImgPlaceHolder = () => <div className={styles.img_placeholder}></div>;
+
 const TripItem: FunctionComponent<Props> = ({
   heroImage,
   unitName,
@@ -18,14 +18,17 @@ const TripItem: FunctionComponent<Props> = ({
   checkInDate,
   parentCategoryName,
 }) => {
+  const [isImgLoaded, setIsImgLoaded] = useState(false);
+
   return (
     <div className={styles.trip_item}>
       <div className={styles.col}>
-        <LazyLoadImage
+        {!isImgLoaded && <ImgPlaceHolder />}
+        <img
           className={styles.img}
-          effect="blur"
           src={`${heroImage}?width=400`}
           alt={`${unitStyleName} trip`}
+          onLoad={() => setIsImgLoaded(true)}
         />
       </div>
       <div className={styles.col}>
